@@ -29,5 +29,10 @@ RUN echo "eval \"\$(pyenv virtualenv-init -)\""  >> $HOME/.bashrc
 RUN $HOME/.pyenv/bin/pyenv update
 RUN $HOME/.pyenv/bin/pyenv install 3.8.7
 
+#NODE
+RUN wget https://nodejs.org/dist/v14.16.0/node-v14.16.0-linux-x64.tar.xz
+RUN tar -xf node-v14.16.0-linux-x64.tar.xz
+RUN echo "export PATH=\"/node-v14.16.0-linux-x64/bin:$PATH\""  >> $HOME/.bashrc
+RUN export PATH="/node-v14.16.0-linux-x64/bin:$PATH" && /node-v14.16.0-linux-x64/bin/npm install -g npm@latest
 
 WORKDIR /app
