@@ -22,17 +22,19 @@ libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
 libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
 RUN curl https://pyenv.run | bash
 
-RUN echo "export PATH=\"$HOME/.pyenv/bin:$PATH\""  >> $HOME/.bashrc
-RUN echo "eval \"\$(pyenv init -)\""  >> $HOME/.bashrc
-RUN echo "eval \"\$(pyenv virtualenv-init -)\""  >> $HOME/.bashrc
-
 RUN $HOME/.pyenv/bin/pyenv update
 RUN $HOME/.pyenv/bin/pyenv install 3.8.7
 
 #NODE
 RUN wget https://nodejs.org/dist/v14.16.0/node-v14.16.0-linux-x64.tar.xz
 RUN tar -xf node-v14.16.0-linux-x64.tar.xz
-RUN echo "export PATH=\"/node-v14.16.0-linux-x64/bin:$PATH\""  >> $HOME/.bashrc
 RUN export PATH="/node-v14.16.0-linux-x64/bin:$PATH" && /node-v14.16.0-linux-x64/bin/npm install -g npm@latest
+
+#PATH
+RUN echo "export PATH=\"/node-v14.16.0-linux-x64/bin:/root/.pyenv/versions/3.8.7/bin:$HOME/.pyenv/bin:$PATH\""  >> $HOME/.bashrc
+RUN echo "eval \"\$(pyenv init -)\""  >> $HOME/.bashrc
+RUN echo "eval \"\$(pyenv virtualenv-init -)\""  >> $HOME/.bashrc
+
+
 
 WORKDIR /app
