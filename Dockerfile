@@ -28,6 +28,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y python3.9
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y python3-pip
 RUN ln -s /usr/bin/python3.9 /usr/bin/python
+RUN pip install pip==21.0.1
 
 #NODE
 RUN wget https://nodejs.org/dist/v14.16.0/node-v14.16.0-linux-x64.tar.xz
