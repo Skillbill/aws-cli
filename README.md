@@ -9,9 +9,14 @@ CLOUD-CICD-TOOLKIT
 - NODE v14.16.0
 
 
-## DEPLOY
+# DEPLOY
 
-```
+```bash
 docker build . -t skillbillsrl/cloud-cicd-toolkit:latest
 docker push skillbillsrl/cloud-cicd-toolkit:latest
+```
+# EXAMPLES
+
+```bash
+docker run -it -v `pwd`:/app -e AWS_ACCESS_KEY_ID=[ID] -e AWS_SECRET_ACCESS_KEY=[KEY] skillbillsrl/cloud-cicd-toolkit terraform apply
 ```
