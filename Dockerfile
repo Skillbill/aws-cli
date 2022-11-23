@@ -16,11 +16,10 @@ RUN unzip awscliv2.zip
 RUN ./aws/install
 
 #TERRAFORM
-RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
-RUN apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-
+RUN wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+RUN echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
 RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y 
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y terraform
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y terraform=1.3.5
 
 #PYTHON
 RUN apt-add-repository ppa:deadsnakes/ppa
