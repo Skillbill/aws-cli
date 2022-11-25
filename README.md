@@ -2,7 +2,7 @@ CLOUD-CICD-TOOLKIT
 ==================
 
 - UBUNTU 20.04
-- AWS CLI
+- AWS CLI 2.9.1
 - TERRAFORM 1.3.5
 - PYENV
 - PYTHON 3.8.7
@@ -20,4 +20,5 @@ docker push skillbillsrl/cloud-cicd-toolkit:latest
 
 ```bash
 docker run -it -v `pwd`:/app -e AWS_ACCESS_KEY_ID=[ID] -e AWS_SECRET_ACCESS_KEY=[KEY] skillbillsrl/cloud-cicd-toolkit terraform apply
+docker run -it -v `pwd`:/app skillbillsrl/cloud-cicd-toolkit aws --version
 ```
